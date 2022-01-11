@@ -62,7 +62,7 @@ ans_arr: .word  0:9
 this loop scans arr1 and writes subsequence lengths to arr2.
 It's inputs are arr1 and arr2. It edits arr2.
 
-```mips
+```asm
 scan_arrray:
 bge		$s2, $s4, ans	# if $s2 >= $s4 then ans
 li		$t3, 0		# $t3 = 0,    j=0
@@ -102,7 +102,7 @@ iterate throug the array and point the current subsequence length. if newcomer i
 ```
 ### max
 this program uses  a max function. this function takes its paremetes from a0 and a1 registers and returns bigger value from v0.
-```mips
+```asm
 max:
 slt     $v0,$a1,$a0
 bne     $v0,$0,L2
@@ -122,7 +122,7 @@ first finds longest subsequence length from arr2 and saves it's result to $s3.
 After that fills longest subsequence to result array.
 
 And lastly  prints results.
-```mips
+```asm
 ans:
 jal max_in_array 
 jal fill_arr
@@ -134,7 +134,7 @@ j exit
 
 ### max in array
 this function find maximum element of an arrray. its input is arr2. result will save to $s3.
-```mips 
+```asm 
 max_in_array: 
 la $s0, arr2   # starting address of arr2 in $s0  
 lw $s1, size   # number of elements in $s1 
@@ -171,7 +171,7 @@ this function fills result array with longest subsequence.
 It takes 4 input. (ansarr, arr1, arr2, length=$s3).
 </br>
 saves result to the ansarr.
-```mips
+```asm
 
 fill_arr:
 or		$t3, $s3, $zero		# $t3 = $s3 | $zero
@@ -215,7 +215,7 @@ jr		$ra					# jump to $ra
 ```
 
 ### print steps
-```mips
+```asm
 print_arr:
     li      $t0, 0
     la      $t1, ans_arr
